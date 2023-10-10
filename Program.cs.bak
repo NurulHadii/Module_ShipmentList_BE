@@ -1,0 +1,110 @@
+using BooxApp.Api.Options;
+using Microsoft.AspNetCore.Mvc.ApiExplorer;
+using Microsoft.AspNetCore.Mvc.Versioning;
+using Microsoft.AspNetCore.Mvc;
+using BooxApp.Api.Hubs;
+using BooxApp.Data.Models;
+using Microsoft.EntityFrameworkCore;
+using BooxApp.Api.Services.Interface;
+using BooxApp.Api.Services;
+using DevExpress.AspNetCore;
+using DevExpress.AspNetCore.Reporting;
+using BooxApp.Api.Reporting;
+using DevExpress.XtraReports.Web.Extensions;
+using DevExpress.CodeParser;
+using DevExpress.Security.Resources;
+using DevExpress.XtraCharts;
+
+var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddCors(options => {
+    options.AddPolicy("AllowCorsPolicy", builder => {
+        // Allow all ports on local host.
+        builder.SetIsOriginAllowed(origin => new Uri(origin).Host == "localhost");
+        builder.AllowAnyHeader();
+        builder.AllowAnyMethod();
+    });
+});
+
+builder.Services.AddAutoMapper(typeof(Program));
+
+//// Add services to the container.
+//builder.Services.AddControllers();
+
+builder.Services.AddSignalR();
+
+builder.Services.AddApiVersioning(opt =>
+{
+    opt.DefaultApiVersion = new ApiVersion(1, 0);
+    opt.AssumeDefaultVersionWhenUnspecified = true;
+    opt.ReportApiVersions = true;
+    opt.ApiVersionReader = ApiVersionReader.Combine(new UrlSegmentApiVersionReader(),
+                                                    new HeaderApiVersionReader("x-api-version"),
+                                                    new MediaTypeApiVersionReader("x-api-version"));
+});
+
+builder.Services.AddVersionedApiExplorer(setup =>
+{
+    setup.GroupNameFormat = "'v'VVV";
+    setup.SubstituteApiVersionInUrl = true;
+});
+
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+
+builder.Services.ConfigureOptions<ConfigureSwaggerOptions>();
+
+//DB
+builder.Services.AddDbContext<BooxAppContext>(
+        options => options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));
+
+//DI Services
+builder.Services.AddScoped<IOrderService, OrderService>();
+builder.Services.AddScoped<IMasterService, MasterService>();
+builder.Services.AddScoped<ITaskService, TaskService>();
+
+builder.Services.AddControllersWithViews();
+
+builder.Services.AddDevExpressControls();
+
+var app = builder.Build();
+
+app.UseDevExpressControls();
+System.Net.ServicePointManager.SecurityProtocol |= System.Net.SecurityProtocolType.Tls12;
+
+var apiVersionDescriptionProvider = app.Services.GetRequiredService<IApiVersionDescriptionProvider>();
+
+// Configure the HTTP request pipeline.
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI(options =>
+    {
+        foreach (var description in apiVersionDescriptionProvider.ApiVersionDescriptions)
+        {
+            options.SwaggerEndpoint($"/swagger/{description.GroupName}/swagger.json",
+                description.GroupName.ToUpperInvariant());
+        }
+    });
+}
+
+
+app.UseHttpsRedirection();
+
+app.UseStaticFiles();
+app.UseRouting();
+
+app.UseCors("AllowCorsPolicy");
+app.UseHttpsRedirection();
+
+app.UseAuthorization();
+
+app.MapControllers();
+
+app.MapHub<MessageHub>("/messageHub");
+
+app.MapControllerRoute(
+    name: "default",
+    pattern: "{controller=Home}/{action=Index}/{id?}");
+
+app.Run();

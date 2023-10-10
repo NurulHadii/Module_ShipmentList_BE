@@ -1,0 +1,78 @@
+using BooxApp.Api.Hubs;
+using DevExpress.AspNetCore;
+using DevExpress.AspNetCore.Reporting;
+using BooxApp.Api.Reporting;
+using DevExpress.XtraReports.Web.Extensions;
+using System.Diagnostics;
+using BooxApp.Core.Extensions;
+using BooxApp.Entity.Tenant;
+using Serilog;
+using Elastic.Apm.AspNetCore;
+
+var builder = WebApplication.CreateBuilder(args);
+//builder.Services.AddCors();
+builder.Services.AddAutoMapper(typeof(Program));
+
+//register BooxApp Bootsraper
+builder.Services.BooxAppBootsraper(builder.Configuration);
+builder.Host.UseSerilog();
+// reporting
+builder.Services.AddDevExpressControls();
+builder.Services.AddScoped<ReportStorageWebExtension, CustomReportStorageWebExtension>();
+builder.Services.ConfigureReportingServices(configurator => {
+    configurator.ConfigureReportDesigner(designerConfigurator => {
+        designerConfigurator.RegisterDataSourceWizardConfigFileConnectionStringsProvider();
+    });
+    configurator.ConfigureWebDocumentViewer(viewerConfigurator => {
+        viewerConfigurator.UseCachedReportSourceBuilder();
+    });
+});
+
+var app = builder.Build();
+// Shows UseCors with CorsPolicyBuilder.
+// The first thing in the chain of calls is to define the CORS
+<<<<<<< HEAD
+//app.UseCors(builder =>
+//{
+//    builder
+//          .WithOrigins("https://icy-flower-074099e00.3.azurestaticapps.net", "http://localhost:8080")
+//          .SetIsOriginAllowedToAllowWildcardSubdomains()
+//          .AllowAnyHeader()
+//          .AllowCredentials()
+//          .WithMethods("GET", "PUT", "POST", "DELETE", "OPTIONS")
+//          .SetPreflightMaxAge(TimeSpan.FromSeconds(3600));
+=======
+app.UseCors(builder =>
+{
+    builder
+          .WithOrigins("https://icy-flower-074099e00.3.azurestaticapps.net")
+          .SetIsOriginAllowedToAllowWildcardSubdomains()
+          .AllowAnyHeader()
+          .AllowCredentials()
+          .WithMethods("GET", "PUT", "POST", "DELETE", "OPTIONS")
+          .SetPreflightMaxAge(TimeSpan.FromSeconds(3600));
+>>>>>>> Step3
+
+//}
+//);
+//#if DEBUG
+//Debugger.Launch();
+//#endif
+
+// reporting
+app.UseDeveloperExceptionPage();
+app.UseDevExpressControls();
+
+//register BooxApp App Builder
+app.BooxAppBuilder();
+app.UseElasticApm(builder.Configuration);
+
+app.MapHub<MessageHub>("/messageHub");
+app.MapHub<BooxAppHub>("/booxAppHub");
+
+app.MapControllerRoute(
+    name: "default",
+    pattern: "{controller=Home}/{action=Index}/{id?}");
+
+app.Run();
+

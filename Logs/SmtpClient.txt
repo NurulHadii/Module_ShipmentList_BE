@@ -1,0 +1,47 @@
+Connected to smtp://smtp.gmail.com:587/?starttls=when-available
+S: 220 smtp.gmail.com ESMTP z4-20020a170902ee0400b001ac7f583f72sm6917461plb.209 - gsmtp
+C: EHLO NH-5CG2165LVB
+S: 250-smtp.gmail.com at your service, [2001:448a:2020:fbf:a1c2:6c2e:4da5:32fe]
+S: 250-SIZE 35882577
+S: 250-8BITMIME
+S: 250-STARTTLS
+S: 250-ENHANCEDSTATUSCODES
+S: 250-PIPELINING
+S: 250-CHUNKING
+S: 250 SMTPUTF8
+C: STARTTLS
+S: 220 2.0.0 Ready to start TLS
+C: EHLO NH-5CG2165LVB
+S: 250-smtp.gmail.com at your service, [2001:448a:2020:fbf:a1c2:6c2e:4da5:32fe]
+S: 250-SIZE 35882577
+S: 250-8BITMIME
+S: 250-AUTH LOGIN PLAIN XOAUTH2 PLAIN-CLIENTTOKEN OAUTHBEARER XOAUTH
+S: 250-ENHANCEDSTATUSCODES
+S: 250-PIPELINING
+S: 250-CHUNKING
+S: 250 SMTPUTF8
+C: AUTH PLAIN ********
+S: 235 2.7.0 Accepted
+C: MAIL FROM:<hadicallofdragon@gmail.com> SIZE=507
+C: RCPT TO:<nurul.hadi@outlook.com>
+S: 250 2.1.0 OK z4-20020a170902ee0400b001ac7f583f72sm6917461plb.209 - gsmtp
+S: 250 2.1.5 OK z4-20020a170902ee0400b001ac7f583f72sm6917461plb.209 - gsmtp
+C: DATA
+S: 354  Go ahead z4-20020a170902ee0400b001ac7f583f72sm6917461plb.209 - gsmtp
+C: From: Hadicallofdragon <hadicallofdragon@gmail.com>
+C: Date: Thu, 31 Aug 2023 00:25:20 +0700
+C: Subject: BooxApp Invitation
+C: Message-Id: <1RU2L8UYUKU4.G8SF7HA8BVD53@nh-5cg2165lvb>
+C: To: Nurul Hadi <nurul.hadi@outlook.com>
+C: MIME-Version: 1.0
+C: Content-Type: text/plain; charset=utf-8
+C: 
+C: 
+C:                 Username : nurul.hadi@outlook.com
+C:                 Password : P@55word
+C:                 Accept Link : https://localhost:7198/Member/AcceptInvitation?Key=f17018e0-102b-464a-a38a-beac5c953e31
+C:                 
+C: .
+S: 250 2.0.0 OK  1693416322 z4-20020a170902ee0400b001ac7f583f72sm6917461plb.209 - gsmtp
+C: QUIT
+S: 221 2.0.0 closing connection z4-20020a170902ee0400b001ac7f583f72sm6917461plb.209 - gsmtp

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+https://go.microsoft.com/fwlink/?LinkID=208121.
+-->
+<Project>
+  <PropertyGroup>
+    <_PublishTargetUrl>C:\Users\nurul\OneDrive\Work\Personal\BooxApp\Microservices-BooxApp\Backend\BooxApp-Module-BE-Demo\BooxApp.Template.Api\bin\Release\net7.0\publish\</_PublishTargetUrl>
+    <History>True|2023-09-07T03:42:01.6937912Z;True|2023-09-05T21:34:33.8901363+07:00;True|2023-09-05T16:52:11.7255017+07:00;True|2023-09-05T16:44:35.7743186+07:00;True|2023-09-05T15:05:03.7997369+07:00;</History>
+    <LastFailureDetails />
+  </PropertyGroup>
+</Project>

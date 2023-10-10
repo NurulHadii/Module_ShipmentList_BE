@@ -1,0 +1,141 @@
+{
+   "CodeGenerationMode": 3,
+   "ContextClassName": "BooxAppContext",
+   "ContextNamespace": null,
+   "DefaultDacpacSchema": null,
+   "FilterSchemas": false,
+   "IncludeConnectionString": false,
+   "ModelNamespace": null,
+   "OutputContextPath": null,
+   "OutputPath": "Models\/Databases",
+   "PreserveCasingWithRegex": true,
+   "ProjectRootNamespace": "BooxApp.Api",
+   "Schemas": null,
+   "SelectedHandlebarsLanguage": 0,
+   "SelectedToBeGenerated": 0,
+   "Tables": [
+      {
+         "Name": "[dbo].[BuildVersion]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[ErrorLog]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[MstLookup]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[PlanningTask]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[Reports]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[TaskActivities]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[TaskMessage]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[TaskNotes]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[SalesLT].[Address]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[SalesLT].[Customer]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[SalesLT].[CustomerAddress]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[SalesLT].[Product]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[SalesLT].[ProductCategory]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[SalesLT].[ProductDescription]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[SalesLT].[ProductModel]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[SalesLT].[ProductModelProductDescription]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[SalesLT].[SalesOrderDetail]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[SalesLT].[SalesOrderHeader]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[SalesLT].[vGetAllCategories]",
+         "ObjectType": 3
+      },
+      {
+         "Name": "[SalesLT].[vProductAndDescription]",
+         "ObjectType": 3
+      },
+      {
+         "Name": "[SalesLT].[vProductModelCatalogDescription]",
+         "ObjectType": 3
+      },
+      {
+         "Name": "[dbo].[uspLogError]",
+         "ObjectType": 1
+      },
+      {
+         "Name": "[dbo].[uspPrintError]",
+         "ObjectType": 1
+      },
+      {
+         "Name": "[dbo].[ufnGetAllCategories]",
+         "ObjectType": 2
+      },
+      {
+         "Name": "[dbo].[ufnGetCustomerInformation]",
+         "ObjectType": 2
+      },
+      {
+         "Name": "[dbo].[ufnGetSalesOrderStatusText]",
+         "ObjectType": 2
+      }
+   ],
+   "UiHint": "booxapp.BooxAppStep1.dbo",
+   "UncountableWords": null,
+   "UseBoolPropertiesWithoutDefaultSql": false,
+   "UseDatabaseNames": false,
+   "UseDateOnlyTimeOnly": false,
+   "UseDbContextSplitting": false,
+   "UseFluentApiOnly": true,
+   "UseHandleBars": false,
+   "UseHierarchyId": false,
+   "UseInflector": false,
+   "UseLegacyPluralizer": false,
+   "UseManyToManyEntity": false,
+   "UseNoDefaultConstructor": false,
+   "UseNoObjectFilter": false,
+   "UseNodaTime": false,
+   "UseNullableReferences": false,
+   "UseSchemaFolders": false,
+   "UseSpatial": false,
+   "UseT4": false
+}
